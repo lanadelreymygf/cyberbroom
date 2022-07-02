@@ -8,7 +8,7 @@ onready var sm := get_parent() as StateManager
 
 
 func enter():
-	issuer.movement += issuer.movement.normalized() * 500
+	issuer.movement += issuer.movement.normalized() * 650
 
 
 func tick(delta: float):
