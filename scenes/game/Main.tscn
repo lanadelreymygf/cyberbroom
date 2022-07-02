@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://scenes/entities/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/entities/Wall.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/entities/Interactable.tscn" type="PackedScene" id=3]
+
+[node name="Main" type="Node2D"]
+position = Vector2( 2, 2 )
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+position = Vector2( 656, 346 )
+acceleration = 2000
+
+[node name="Wall" parent="." instance=ExtResource( 2 )]
+position = Vector2( 1058, 110 )
+rotation = 0.345851
+
+[node name="Wall2" parent="." instance=ExtResource( 2 )]
+position = Vector2( 237, 354 )
+rotation = -0.506429
+
+[node name="Wall3" parent="." instance=ExtResource( 2 )]
+position = Vector2( 570, 589 )
+rotation = 0.0305605
+
+[node name="Interactable" parent="Wall3" instance=ExtResource( 3 )]
+
+[connection signal="interact" from="Wall3/Interactable" to="Player" method="_on_Interactable_interact"]
