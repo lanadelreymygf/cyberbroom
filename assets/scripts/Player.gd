@@ -11,11 +11,15 @@ onready var dash_timer := $DashTimer
 onready var anim_player := $AnimationPlayer
 
 
+func _ready():
+	anim_player.play("idle")
+
+
 func get_axis() -> Vector2:
 	var axis := Vector2.ZERO
 	
-	axis.x = int(Input.is_action_pressed("ui_right")) - int(Input.is_action_pressed("ui_left"))
-	axis.y = int(Input.is_action_pressed("ui_down"))  - int(Input.is_action_pressed("ui_up"))
+	axis.x = int(Input.is_action_pressed("right")) - int(Input.is_action_pressed("left"))
+	axis.y = int(Input.is_action_pressed("down"))  - int(Input.is_action_pressed("up"))
 	
 	return axis.normalized()
 
@@ -41,7 +45,7 @@ func dash():
 
 func _physics_process(delta):
 	# Dashing
-	if Input.is_action_just_pressed("ui_accept"):
+	if Input.is_action_just_pressed("dash"):
 		dash()
 	
 	sm.tick(delta)

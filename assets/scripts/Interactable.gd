@@ -8,7 +8,7 @@ signal interact
 
 
 func _process(_delta):
-	if Input.is_action_just_pressed("ui_select") and player_near:
+	if Input.is_action_just_pressed("interact") and player_near:
 		emit_signal("interact")
 
 
