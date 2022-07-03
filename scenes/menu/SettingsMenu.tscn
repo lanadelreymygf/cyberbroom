@@ -22,96 +22,105 @@ margin_bottom = -1.0
 alignment = 1
 
 [node name="AudioLabel" type="Label" parent="VBoxContainer"]
-margin_top = 75.0
+margin_top = 89.0
 margin_right = 1048.0
-margin_bottom = 108.0
+margin_bottom = 122.0
 text = "Громкость"
 align = 1
 
 [node name="Audio" type="HBoxContainer" parent="VBoxContainer"]
-margin_top = 156.0
+margin_top = 170.0
 margin_right = 1048.0
-margin_bottom = 206.0
+margin_bottom = 203.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_stretch_ratio = 0.0
 
 [node name="MasterLabel" type="Label" parent="VBoxContainer/Audio"]
-margin_top = 8.0
-margin_right = 238.0
-margin_bottom = 41.0
-text = "Главный канал:"
+margin_right = 508.0
+margin_bottom = 33.0
+size_flags_horizontal = 3
+text = "Общая громкость:"
+align = 1
 
 [node name="MasterSlider" type="HSlider" parent="VBoxContainer/Audio"]
-margin_left = 270.0
-margin_right = 470.0
-margin_bottom = 50.0
-rect_min_size = Vector2( 200, 50 )
+margin_left = 540.0
+margin_right = 1048.0
+margin_bottom = 33.0
+size_flags_horizontal = 3
+size_flags_vertical = 1
 
 [node name="VideoLabel" type="Label" parent="VBoxContainer"]
-margin_top = 254.0
+margin_top = 251.0
 margin_right = 1048.0
-margin_bottom = 287.0
+margin_bottom = 284.0
 text = "Видео"
 align = 1
 
 [node name="Resolution" type="HBoxContainer" parent="VBoxContainer"]
-margin_top = 335.0
+margin_top = 332.0
 margin_right = 1048.0
-margin_bottom = 380.0
+margin_bottom = 365.0
 
 [node name="ResolutionLabel" type="Label" parent="VBoxContainer/Resolution"]
-margin_top = 6.0
-margin_right = 187.0
-margin_bottom = 39.0
+margin_right = 508.0
+margin_bottom = 33.0
+size_flags_horizontal = 3
 text = "Разрешение:"
+align = 1
 
 [node name="ItemList" type="ItemList" parent="VBoxContainer/Resolution"]
-margin_left = 219.0
-margin_right = 319.0
-margin_bottom = 45.0
-rect_min_size = Vector2( 100, 0 )
+margin_left = 540.0
+margin_right = 1048.0
+margin_bottom = 33.0
+size_flags_horizontal = 3
 items = [ "1920x1080", null, false, "1280x720", null, false ]
 allow_reselect = true
-auto_height = true
-max_columns = 3
+max_columns = 0
 
 [node name="VSync" type="HBoxContainer" parent="VBoxContainer"]
-margin_top = 428.0
+margin_top = 413.0
 margin_right = 1048.0
-margin_bottom = 469.0
+margin_bottom = 454.0
 
 [node name="VSyncLabel" type="Label" parent="VBoxContainer/VSync"]
 margin_top = 4.0
-margin_right = 357.0
+margin_right = 508.0
 margin_bottom = 37.0
+size_flags_horizontal = 3
 text = "Верт. синхронизация: "
+align = 1
 
 [node name="CheckButton" type="CheckBox" parent="VBoxContainer/VSync"]
-margin_left = 389.0
-margin_right = 413.0
+margin_left = 540.0
+margin_right = 1048.0
 margin_bottom = 41.0
+size_flags_horizontal = 3
+align = 1
 
 [node name="Fullscreen" type="HBoxContainer" parent="VBoxContainer"]
-margin_top = 517.0
+margin_top = 502.0
 margin_right = 1048.0
-margin_bottom = 558.0
+margin_bottom = 543.0
 
 [node name="Fullscreen" type="Label" parent="VBoxContainer/Fullscreen"]
 margin_top = 4.0
-margin_right = 221.0
+margin_right = 508.0
 margin_bottom = 37.0
+size_flags_horizontal = 3
 text = "Полный экран:"
+align = 1
 
 [node name="CheckButton" type="CheckBox" parent="VBoxContainer/Fullscreen"]
-margin_left = 253.0
-margin_right = 277.0
+margin_left = 540.0
+margin_right = 1048.0
 margin_bottom = 41.0
+size_flags_horizontal = 3
 
 [node name="Apply" type="Button" parent="VBoxContainer"]
-margin_top = 606.0
+margin_top = 591.0
 margin_right = 1048.0
-margin_bottom = 645.0
+margin_bottom = 630.0
 text = "Применить"
 
 [connection signal="pressed" from="VBoxContainer/Apply" to="." method="_on_Apply_pressed"]

@@ -9,12 +9,14 @@ var can_dash := true
 onready var sm := $StateManager
 onready var dash_timer := $DashTimer
 onready var anim_player := $AnimationPlayer
+onready var dialog_box := $"../DialogBox" as DialogBox
 
 
 func _ready():
 	anim_player.play("idle")
 
 
+# Get the normalized movement axis based on the key input
 func get_axis() -> Vector2:
 	var axis := Vector2.ZERO
 	
@@ -24,6 +26,7 @@ func get_axis() -> Vector2:
 	return axis.normalized()
 
 
+# Applies friction in the opposite direction of the movement
 func apply_friction(value: float):
 	if movement.length() < value:
 		movement = Vector2.ZERO
@@ -31,11 +34,13 @@ func apply_friction(value: float):
 		movement -= movement.normalized() * value
 
 
+# Applies acceleration in the direction of the movement
 func apply_acceleration(value: Vector2):
 	movement += value
 	movement = movement.clamped(max_speed)
 
 
+# Perform a dash, if able to
 func dash():
 	if sm.current_state == 1 and can_dash:
 		sm.change_state(2)
@@ -55,9 +60,12 @@ func _on_DashTimer_timeout():
 	can_dash = true
 
 
+# Globally modify the class name
 func get_class(): return "Player"
 
+func get_state(): return sm.current_state
 
+# Animation handling
 func _on_StateManager_state_changed(new_state):
 	match new_state:
 		0:
@@ -66,7 +74,16 @@ func _on_StateManager_state_changed(new_state):
 			anim_player.play("walk")
 		2:
 			anim_player.play("dash")
+		3:
+			anim_player.play("idle")
 
 
+# Sample interacton, TO BE REMOVED
 func _on_Interactable_interact():
-	print("pressed E on the wall")
+	if !dialog_box.playing:
+		dialog_box.play_dialog()
+		sm.change_state(3)
+
+
+func _on_DialogBox_dialog_finished():
+	sm.change_state(0)

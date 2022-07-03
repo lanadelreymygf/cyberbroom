@@ -25,15 +25,15 @@ margin_bottom = 196.5
 alignment = 1
 
 [node name="Label" type="Label" parent="VBoxContainer"]
+margin_top = 18.0
 margin_right = 833.0
-margin_bottom = 393.0
+margin_bottom = 375.0
 text = "Помощь:
 
 Вверх, Вправо, Вниз, Влево (стрелочки) - Движение
 
 Z - Рывок
-X - Атака
-C - Взаимодействие
+X - Взаимодействие
 
 A, S - Листать инвентраь влево/вправо
 

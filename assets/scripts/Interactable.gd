@@ -1,5 +1,9 @@
 extends Node
 
+# Interactable is a property that most of the puzzle objects will have
+# It simply adds a sprite to show when the player can interact with it
+# As well as a signal, which is emitted once an interaction has been registered
+
 var player_near := false
 
 onready var key := $Sprite

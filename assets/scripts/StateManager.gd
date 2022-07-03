@@ -1,7 +1,14 @@
 extends Node
 class_name StateManager
 
-# States are children nodes, which have function "tick"
+# A generally applicable StateManager
+# All children nodes are expected to have "enter", "exit" and "tick" functions
+# As well as to have a field "issuer"
+
+# "enter" and "exit" are called once in the times of change of state
+# "tick" is called every (physics) frame
+
+# It is up to the state to change to another state
 
 var current_state := 0
 
@@ -25,6 +32,7 @@ func tick(delta: float):
 	states[current_state].tick(delta)
 
 
+# Sets the issuer of all states, so that they can modify it directly
 func _ready():
 	for state in states:
 		state.issuer = issuer
