@@ -1,42 +1,33 @@
-extends Control
-class_name DialogBox
+extends CanvasLayer
+
+# This Node completely controls the Dialogue system in the game
+# It is deactivated by default, and can be started with "play_dialog"
 
 signal dialog_finished
+signal dialog_started
 
 export(float) var text_speed := 0.05
-var current_dialog := [
-	{
-	"text": "У меня было два барана"
-	},
-	{
-	"text": "Потом баранов съел волк"
-	},
-	{
-	"text": "Я нашёл волка и убил его"
-	},
-	{
-	"text": "После этого весь город жил мирно и дружно"
-	},
-	{
-	"text": "Слава России"
-	},
-]
+var current_dialog := ""
+var dialogs := Dialogs.get_dialogs() as Dictionary
 var phrase_finished := false
 var playing := false
 var current_phrase := 0
 
-onready var text_container := $VBoxContainer/Dialog/VBoxContainer/Text
-onready var skip_marker    := $VBoxContainer/Dialog/VBoxContainer/Skip
+onready var text_container := $Control/VBoxContainer/Dialog/VBoxContainer/Text
+onready var character_name_label := $Control/VBoxContainer/Dialog/VBoxContainer/Name
+onready var skip_marker    := $Control/VBoxContainer/Dialog/VBoxContainer/Skip
 onready var text_timer     := $TextTimer
 
 
 func play_phrase(i: int):
-	var text := current_dialog[i]["text"] as String
+	var text := dialogs[current_dialog][i]["text"] as String
+	var character_name := dialogs[current_dialog][i]["name"] as String
 	
-	skip_marker.visible = false
+	skip_marker.visible_characters = 0
 	phrase_finished = false
-	text_container.text = text
-	text_container.visible_characters = 0
+	text_container.bbcode_text = text
+	character_name_label.text = character_name + ":"
+	text_container.visible_characters = 0 
 	text_timer.wait_time = text_speed
 	current_phrase = i
 	
@@ -45,36 +36,38 @@ func play_phrase(i: int):
 		text_timer.start()
 		yield(text_timer, "timeout")
 	
-	skip_marker.visible = true
+	skip_marker.visible_characters = -1
 	phrase_finished = true
 
 
 func activate():
-	visible = true
+	$Control.visible = true
 	set_process(true)
 
 
 func deactivate():
-	visible = false
+	$Control.visible = false
 	playing = false
 	set_process(false)
 
 
 func _ready():
-	play_phrase(0)
+	deactivate()
 
 
-func play_dialog():
+func play_dialog(name: String):
 	activate()
 	playing = true
+	current_dialog = name
 	current_phrase = 0
+	emit_signal("dialog_started")
 	play_phrase(0)
 
 
 func _process(_delta):
 	if Input.is_action_just_pressed("dash"):
 		if phrase_finished:
-			if current_phrase + 1 < len(current_dialog):
+			if current_phrase + 1 < len(dialogs[current_dialog]):
 				play_phrase(current_phrase + 1)
 			else:
 				emit_signal("dialog_finished")

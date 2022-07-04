@@ -9,10 +9,30 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "Control",
-"class": "DialogBox",
+"base": "Resource",
+"class": "DialogEventResource",
 "language": "GDScript",
-"path": "res://assets/scripts/DialogBox.gd"
+"path": "res://assets/scripts/DialogEventResource.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "Drone",
+"language": "GDScript",
+"path": "res://assets/scripts/Drone.gd"
+}, {
+"base": "Resource",
+"class": "LevelChangeEventResource",
+"language": "GDScript",
+"path": "res://assets/scripts/LevelChangeEventResource.gd"
+}, {
+"base": "Node2D",
+"class": "Main",
+"language": "GDScript",
+"path": "res://assets/scripts/Main.gd"
+}, {
+"base": "CanvasLayer",
+"class": "PauseMenu",
+"language": "GDScript",
+"path": "res://assets/scripts/PauseMenu.gd"
 }, {
 "base": "KinematicBody2D",
 "class": "Player",
@@ -25,7 +45,11 @@ _global_script_classes=[ {
 "path": "res://assets/scripts/StateManager.gd"
 } ]
 _global_script_class_icons={
-"DialogBox": "",
+"DialogEventResource": "",
+"Drone": "",
+"LevelChangeEventResource": "",
+"Main": "",
+"PauseMenu": "",
 "Player": "",
 "StateManager": ""
 }
@@ -40,6 +64,12 @@ config/icon="res://icon.png"
 
 SceneTransitionManager="*res://scenes/other/SceneTransitionManager.tscn"
 SettingsManager="*res://assets/scripts/SettingsManager.gd"
+Dialogs="*res://assets/scripts/Dialogs.gd"
+DialogBox="*res://scenes/other/DialogBox.tscn"
+
+[debug]
+
+settings/stdout/print_fps=true
 
 [display]
 
@@ -140,6 +170,5 @@ common/enable_pause_aware_picking=true
 
 [rendering]
 
-quality/intended_usage/framebuffer_allocation=1
-quality/intended_usage/framebuffer_allocation.mobile=1
-environment/default_environment="res://default_env.tres"
+quality/intended_usage/framebuffer_allocation=0
+quality/intended_usage/framebuffer_allocation.mobile=0

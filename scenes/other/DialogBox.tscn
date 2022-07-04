@@ -5,78 +5,87 @@
 [ext_resource path="res://icon.png" type="Texture" id=3]
 [ext_resource path="res://assets/scripts/DialogBox.gd" type="Script" id=4]
 
-[node name="DialogBox" type="Control"]
-visible = false
+[node name="DialogBox" type="CanvasLayer"]
+script = ExtResource( 4 )
+
+[node name="Control" type="Control" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
 theme = ExtResource( 2 )
-script = ExtResource( 4 )
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 265.0
 margin_top = -415.0
 margin_right = -265.0
-margin_bottom = -131.0
+margin_bottom = -103.0
 grow_vertical = 0
 
-[node name="Portrait" type="PanelContainer" parent="VBoxContainer"]
+[node name="Portrait" type="PanelContainer" parent="Control/VBoxContainer"]
 margin_right = 134.0
-margin_bottom = 152.0
+margin_bottom = 134.0
 grow_vertical = 0
 size_flags_horizontal = 2
-size_flags_vertical = 3
+size_flags_vertical = 2
 
-[node name="PortraitImg" type="TextureRect" parent="VBoxContainer/Portrait"]
+[node name="PortraitImg" type="TextureRect" parent="Control/VBoxContainer/Portrait"]
 margin_left = 3.0
 margin_top = 3.0
 margin_right = 131.0
-margin_bottom = 149.0
+margin_bottom = 131.0
 rect_min_size = Vector2( 128, 128 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
 texture = ExtResource( 3 )
 expand = true
-stretch_mode = 7
+stretch_mode = 6
 
-[node name="Dialog" type="PanelContainer" parent="VBoxContainer"]
-margin_top = 200.0
+[node name="Dialog" type="PanelContainer" parent="Control/VBoxContainer"]
+margin_top = 182.0
 margin_right = 750.0
-margin_bottom = 284.0
+margin_bottom = 312.0
 grow_vertical = 0
 size_flags_horizontal = 3
+size_flags_vertical = 3
 size_flags_stretch_ratio = 3.0
 theme = ExtResource( 2 )
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Dialog"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/VBoxContainer/Dialog"]
 margin_left = 3.0
 margin_top = 3.0
 margin_right = 747.0
-margin_bottom = 81.0
+margin_bottom = 127.0
 custom_constants/separation = 12
 
-[node name="Name" type="Label" parent="VBoxContainer/Dialog/VBoxContainer"]
+[node name="Name" type="Label" parent="Control/VBoxContainer/Dialog/VBoxContainer"]
 margin_right = 744.0
 margin_bottom = 33.0
+size_flags_vertical = 2
 custom_fonts/font = ExtResource( 1 )
 text = "Персонаж:"
 uppercase = true
 
-[node name="Text" type="Label" parent="VBoxContainer/Dialog/VBoxContainer"]
+[node name="Text" type="RichTextLabel" parent="Control/VBoxContainer/Dialog/VBoxContainer"]
 margin_top = 45.0
 margin_right = 744.0
-margin_bottom = 78.0
-size_flags_vertical = 3
-text = "Вот немного текста.."
+margin_bottom = 79.0
+size_flags_vertical = 6
+theme = ExtResource( 2 )
+custom_colors/default_color = Color( 1, 1, 1, 1 )
+bbcode_enabled = true
+bbcode_text = "Текст реплики. "
+meta_underlined = false
+text = "Текст реплики."
+fit_content_height = true
 
-[node name="Skip" type="Label" parent="VBoxContainer/Dialog/VBoxContainer"]
-visible = false
-margin_top = 90.0
+[node name="Skip" type="Label" parent="Control/VBoxContainer/Dialog/VBoxContainer"]
+margin_top = 91.0
 margin_right = 744.0
-margin_bottom = 123.0
-text = "[zXC]"
+margin_bottom = 124.0
+size_flags_vertical = 2
+text = "[Z]"
 align = 2
 
 [node name="TextTimer" type="Timer" parent="."]

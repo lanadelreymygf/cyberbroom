@@ -9,7 +9,6 @@ var can_dash := true
 onready var sm := $StateManager
 onready var dash_timer := $DashTimer
 onready var anim_player := $AnimationPlayer
-onready var dialog_box := $"../DialogBox" as DialogBox
 
 
 func _ready():
@@ -63,7 +62,22 @@ func _on_DashTimer_timeout():
 # Globally modify the class name
 func get_class(): return "Player"
 
+
 func get_state(): return sm.current_state
+
+
+func set_state(new_state: int):
+	sm.change_state(new_state)
+
+
+func trigger_dialog(dialog_name: String):
+	if !DialogBox.playing:
+		DialogBox.play_dialog(dialog_name)
+		sm.change_state(3)
+	
+		yield(DialogBox, "dialog_finished")
+		sm.change_state(0)
+
 
 # Animation handling
 func _on_StateManager_state_changed(new_state):
@@ -76,14 +90,3 @@ func _on_StateManager_state_changed(new_state):
 			anim_player.play("dash")
 		3:
 			anim_player.play("idle")
-
-
-# Sample interacton, TO BE REMOVED
-func _on_Interactable_interact():
-	if !dialog_box.playing:
-		dialog_box.play_dialog()
-		sm.change_state(3)
-
-
-func _on_DialogBox_dialog_finished():
-	sm.change_state(0)
