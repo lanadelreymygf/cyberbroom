@@ -65,6 +65,7 @@ script = ExtResource( 1 )
 acceleration = 2000
 
 [node name="Sprite" type="Sprite" parent="."]
+z_index = 70
 texture = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

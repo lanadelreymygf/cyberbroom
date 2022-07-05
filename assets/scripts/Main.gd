@@ -5,7 +5,6 @@ class_name Main
 
 var levels := [
 	preload("res://scenes/game/Level0.tscn"),
-	preload("res://scenes/game/Level1.tscn"),
 ]
 var current_level := 0
 var paused := false
