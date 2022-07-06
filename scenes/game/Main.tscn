@@ -11,6 +11,3 @@ script = ExtResource( 3 )
 [node name="Level0" parent="." instance=ExtResource( 2 )]
 
 [node name="PauseMenu" parent="." instance=ExtResource( 1 )]
-
-[connection signal="main_menu_request" from="PauseMenu" to="." method="_on_PauseMenu_main_menu_request"]
-[connection signal="menu_closed" from="PauseMenu" to="." method="_on_PauseMenu_menu_closed"]

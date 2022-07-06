@@ -10,19 +10,11 @@ var player_near := false
 var player: Player
 
 onready var key := $Sprite
-onready var main := get_node("/root/Main")
-
-signal interact
-
-
-func execute(player: Player, args: Array = []):
-	event.execute(player, args)
 
 
 func _process(_delta):
-	if Input.is_action_just_pressed("interact") and player_near:
-		emit_signal("interact")
-		execute(player, [main])
+	if Input.is_action_just_pressed("interact") and player_near and player.get_state() != 3:
+		event.execute()
 
 
 func _on_Area2D_body_entered(body):

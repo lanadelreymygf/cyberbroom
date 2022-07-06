@@ -4,7 +4,8 @@ extends AudioStreamPlayer
 
 # Defines music paths for different levels
 var music_paths := [
-	"res://assets/audio/isitexit.wav"
+	"res://assets/audio/isitexit.wav",
+	"res://assets/audio/isitexit.wav",
 ]
 var current_level: int
 var is_in_main_menu = false
@@ -21,7 +22,7 @@ func play_music_on_level(level: int):
 	current_level = level
 	is_in_main_menu = false
 	
-	volume_db = (SettingsManager.get_settings()["volume"] - 100) / 10.0
+	volume_db = lerp(-40.0, 0.0, SettingsManager.get_settings()["volume"] / 100.0)
 	
 	stream = resource
 	
@@ -34,7 +35,7 @@ func play_main_menu_music():
 	var resource := load("res://assets/audio/mainMenuVer2.mp3")
 	is_in_main_menu = true
 	
-	volume_db = (SettingsManager.get_settings()["volume"] - 100) / 10.0
+	volume_db = lerp(-40.0, 0.0, SettingsManager.get_settings()["volume"] / 100.0)
 	
 	stream = resource
 	

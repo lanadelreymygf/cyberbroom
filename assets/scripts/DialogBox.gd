@@ -3,12 +3,9 @@ extends CanvasLayer
 # This Node completely controls the Dialogue system in the game
 # It is deactivated by default, and can be started with "play_dialog"
 
-signal dialog_finished
-signal dialog_started
-
 export(float) var text_speed := 0.05
 var current_dialog := ""
-var dialogs := Dialogs.get_dialogs() as Dictionary
+var dialogs := Dialogs.get_dialogs()
 var phrase_finished := false
 var playing := false
 var current_phrase := 0
@@ -41,26 +38,34 @@ func play_phrase(i: int):
 
 
 func activate():
+	EventBus.emit_signal("player_state_change", 3)
+	
 	$Control.visible = true
 	set_process(true)
 
 
 func deactivate():
+	EventBus.emit_signal("player_state_change", 0)
+	
 	$Control.visible = false
 	playing = false
 	set_process(false)
 
 
 func _ready():
+	EventBus.connect("play_dialog", self, "play_dialog")
 	deactivate()
 
 
 func play_dialog(name: String):
+	if playing:
+		return
+	
 	activate()
 	playing = true
 	current_dialog = name
 	current_phrase = 0
-	emit_signal("dialog_started")
+	
 	play_phrase(0)
 
 
@@ -70,7 +75,6 @@ func _process(_delta):
 			if current_phrase + 1 < len(dialogs[current_dialog]):
 				play_phrase(current_phrase + 1)
 			else:
-				emit_signal("dialog_finished")
 				deactivate()
 		else:
 			text_container.visible_characters = -1

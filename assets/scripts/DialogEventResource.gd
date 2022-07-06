@@ -6,5 +6,5 @@ class_name DialogEventResource
 export(String) var dialog_name = "dialog0"
 
 
-func execute(player: Player, args: Array):
-	player.trigger_dialog(dialog_name)
+func execute():
+	EventBus.emit_signal("play_dialog", dialog_name)

@@ -13,6 +13,8 @@ onready var anim_player := $AnimationPlayer
 
 func _ready():
 	anim_player.play("idle")
+	
+	EventBus.connect("player_state_change", self, "set_state")
 
 
 # Get the normalized movement axis based on the key input
@@ -41,8 +43,8 @@ func apply_acceleration(value: Vector2):
 
 # Perform a dash, if able to
 func dash():
-	if sm.current_state == 1 and can_dash:
-		sm.change_state(2)
+	if get_state() == 1 and can_dash:
+		set_state(2)
 		can_dash = false
 		dash_timer.start()
 
@@ -68,15 +70,6 @@ func get_state(): return sm.current_state
 
 func set_state(new_state: int):
 	sm.change_state(new_state)
-
-
-func trigger_dialog(dialog_name: String):
-	if !DialogBox.playing:
-		DialogBox.play_dialog(dialog_name)
-		sm.change_state(3)
-	
-		yield(DialogBox, "dialog_finished")
-		sm.change_state(0)
 
 
 # Animation handling

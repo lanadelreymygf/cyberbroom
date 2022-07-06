@@ -20,5 +20,5 @@ var dialogs := {
 } setget ,get_dialogs
 
 
-func get_dialogs():
+func get_dialogs() -> Dictionary:
 	return dialogs.duplicate(true)
