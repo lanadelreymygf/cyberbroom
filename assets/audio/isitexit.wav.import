@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/isitexit.wav-77317f878de5c64b2afc58e6019d0e50.sample"
+
+[deps]
+
+source_file="res://assets/audio/isitexit.wav"
+dest_files=[ "res://.import/isitexit.wav-77317f878de5c64b2afc58e6019d0e50.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

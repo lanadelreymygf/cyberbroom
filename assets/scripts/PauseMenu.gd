@@ -30,6 +30,7 @@ func _on_Continue_pressed():
 
 func _on_Main_Menu_pressed():
 	close()
+	MusicPlayer.stop_music()
 	emit_signal("main_menu_request")
 
 

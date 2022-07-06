@@ -9,6 +9,8 @@ func _ready():
 	
 	# This should fix camera jittering, until the benevolent Godot devs update it
 	Engine.set_target_fps(Engine.get_iterations_per_second())
+	
+	MusicPlayer.play_main_menu_music()
 
 
 # Quit the game
@@ -22,6 +24,7 @@ func _on_Play_pressed():
 		child.disabled = true
 	
 	SceneTransitionManager.change_scene("res://scenes/game/Main.tscn")
+	MusicPlayer.play_music_on_level(0)
 
 
 # Open the Help menu

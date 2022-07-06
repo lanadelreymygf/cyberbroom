@@ -25,6 +25,8 @@ func change_levels(next_level: int):
 	var new_scene := (levels[next_level] as PackedScene).instance()
 	var old_scene := get_child(0)
 	
+	MusicPlayer.stop()
+	
 	SceneTransitionManager.fade_to_black()
 	player.set_state(3)
 	yield(SceneTransitionManager, "faded_to_black")
@@ -37,6 +39,8 @@ func change_levels(next_level: int):
 	player = get_child(0).get_node("Player")
 	
 	SceneTransitionManager.fade_to_normal()
+	
+	MusicPlayer.play_music_on_level(next_level)
 
 
 func _on_PauseMenu_menu_closed():

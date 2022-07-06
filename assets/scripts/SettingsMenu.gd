@@ -44,6 +44,7 @@ func _ready():
 	
 	synchronize_menu()
 
+
 # Return to Main menu upon pressing Esc
 func _input(event: InputEvent):
 	if event.is_action_pressed("back"):
@@ -56,3 +57,6 @@ func _on_Apply_pressed():
 	SettingsManager.set_settings(settings)
 	SettingsManager.apply_settings()
 	SettingsManager.save_settings_to_file()
+	
+	# Restarts the main menu music track so that the change can be heard
+	MusicPlayer.play_main_menu_music()

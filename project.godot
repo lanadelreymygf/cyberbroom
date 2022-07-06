@@ -66,6 +66,7 @@ SceneTransitionManager="*res://scenes/other/SceneTransitionManager.tscn"
 SettingsManager="*res://assets/scripts/SettingsManager.gd"
 Dialogs="*res://assets/scripts/Dialogs.gd"
 DialogBox="*res://scenes/other/DialogBox.tscn"
+MusicPlayer="*res://scenes/other/MusicPlayer.tscn"
 
 [debug]
 
